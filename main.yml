@@ -6,7 +6,7 @@
   vars:
     base_image: centos:7
     container_name: fathom_build_container
-    image_namespace: geerlingguy
+    image_namespace: buluma
     image_name: fathom
 
     # Fathom settings.
