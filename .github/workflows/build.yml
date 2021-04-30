@@ -37,13 +37,13 @@ jobs:
 
       - name: Run the image and test it.
         run: |
-          docker run -d --name=fathom -p 9000:9000 buluma/fathom:latest
+          docker run -d --name=fathom -p 9000:9000 geerlingguy/fathom:latest
           sleep 5
           curl localhost:9000
       - name: Store image artifact.
         uses: ishworkh/docker-image-artifact-upload@v1
         with:
-          image: "buluma/fathom:latest"
+          image: "geerlingguy/fathom:latest"
 
   # If on master branch, build and release images.
   release:
@@ -72,8 +72,8 @@ jobs:
       - name: Push images.
         run: |
           # Push latest tag.
-          docker push buluma/fathom:latest
+          docker push geerlingguy/fathom:latest
           # Push current version tag.
-          fathom_version=$(docker run --rm buluma/fathom:latest bash -c "fathom --version" | awk '{print $3}' | sed 's/.$//')
-          docker tag buluma/fathom:latest buluma/fathom:${fathom_version}
+          fathom_version=$(docker run --rm geerlingguy/fathom:latest bash -c "fathom --version" | awk '{print $3}' | sed 's/.$//')
+          docker tag geerlingguy/fathom:latest buluma/fathom:${fathom_version}
           docker push buluma/fathom:${fathom_version}
