@@ -72,7 +72,7 @@ jobs:
       - name: Push images.
         run: |
           # Push latest tag.
-          docker push geerlingguy/fathom:latest
+          docker push buluma/fathom:latest
           # Push current version tag.
           fathom_version=$(docker run --rm geerlingguy/fathom:latest bash -c "fathom --version" | awk '{print $3}' | sed 's/.$//')
           docker tag geerlingguy/fathom:latest buluma/fathom:${fathom_version}
