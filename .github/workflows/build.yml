@@ -43,7 +43,7 @@ jobs:
       - name: Store image artifact.
         uses: ishworkh/docker-image-artifact-upload@v1
         with:
-          image: "geerlingguy/fathom:latest"
+          image: "buluma/fathom:latest"
 
   # If on master branch, build and release images.
   release:
@@ -75,5 +75,5 @@ jobs:
           docker push buluma/fathom:latest
           # Push current version tag.
           fathom_version=$(docker run --rm buluma/fathom:latest bash -c "fathom --version" | awk '{print $3}' | sed 's/.$//')
-          docker tag geerlingguy/fathom:latest buluma/fathom:${fathom_version}
+          docker tag buluma/fathom:latest buluma/fathom:${fathom_version}
           docker push buluma/fathom:${fathom_version}
