@@ -39,7 +39,7 @@
       delegate_to: '{{ container_name }}'
 
   roles:
-    - name: buluma.fathom
+    - name: geerlingguy.fathom
       delegate_to: '{{ container_name }}'
 
   post_tasks:
