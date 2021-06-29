@@ -6,8 +6,8 @@ on:
   push:
     branches:
       - master
-  schedule:
-    - cron: "15 2/5 * *"
+#   schedule:
+#     - cron: "15 2/5 * *"
 
 env:
   ANSIBLE_FORCE_COLOR: true
