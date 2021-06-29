@@ -7,7 +7,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: "15 2 * * 0"
+    - cron: "15 2/5 * *"
 
 env:
   ANSIBLE_FORCE_COLOR: true
@@ -27,7 +27,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install prerequisites.
-        run: pip3 install ansible docker
+        run: pip3 install ansible docker six
 
       - name: Install role dependencies.
         run: ansible-galaxy install -r requirements.yml
@@ -43,7 +43,7 @@ jobs:
       - name: Store image artifact.
         uses: ishworkh/docker-image-artifact-upload@v1
         with:
-          image: "buluma/fathom:latest"
+          image: "geerlingguy/fathom:latest"
 
   # If on master branch, build and release images.
   release:
@@ -75,5 +75,5 @@ jobs:
           docker push buluma/fathom:latest
           # Push current version tag.
           fathom_version=$(docker run --rm buluma/fathom:latest bash -c "fathom --version" | awk '{print $3}' | sed 's/.$//')
-          docker tag buluma/fathom:latest buluma/fathom:${fathom_version}
+          docker tag geerlingguy/fathom:latest buluma/fathom:${fathom_version}
           docker push buluma/fathom:${fathom_version}
