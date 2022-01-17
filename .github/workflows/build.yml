@@ -7,7 +7,8 @@ on:
     branches:
       - master
   schedule:
-    - cron: '30 5 * * *'
+    - cron: '30 5,12 * * *'
+  workflow_dispatch:
 
 env:
   ANSIBLE_FORCE_COLOR: true
